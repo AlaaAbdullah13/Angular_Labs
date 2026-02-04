@@ -1,0 +1,10 @@
+<section class="hero-section py-5 bg-light">
+  <div class="container text-center">
+    <img [src]="profileImg()" [alt]="firstName()" class="rounded-circle mb-4 shadow" style="width: 200px;">
+    
+    <h1 class="display-4 fw-bold">I'm {{ firstName() }} {{ lastName() }}</h1>
+    <p class="lead mb-4">{{ title() }}</p>
+    
+    <button (click)="sayHello()" class="btn btn-primary rounded-pill px-5">Click to Greet</button>
+  </div>
+</section>

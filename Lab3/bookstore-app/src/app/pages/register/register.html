@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-sm" style="width: 400px; background-color: #fffaf5; border: 1px solid #d7ccc8;">
+    <h2 class="text-center mb-4" style="color: #5d4037; font-family: 'Playfair Display', serif;">Register</h2>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Full Name</label>
+        <input type="text" formControlName="fullName" class="form-control" 
+               [ngClass]="{'is-invalid': registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid}">
+        <div class="invalid-feedback">Name is required (min 3 chars).</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Email Address</label>
+        <input type="email" formControlName="email" class="form-control"
+               [ngClass]="{'is-invalid': registerForm.get('email')?.touched && registerForm.get('email')?.invalid}">
+        <div class="invalid-feedback">Please enter a valid email.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Password</label>
+        <input type="password" formControlName="password" class="form-control"
+               [ngClass]="{'is-invalid': registerForm.get('password')?.touched && registerForm.get('password')?.invalid}">
+        <div class="invalid-feedback">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Min 8 characters.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['pattern']">Must include Uppercase, Lowercase, and Number.</span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" class="form-control"
+               [ngClass]="{'is-invalid': registerForm.get('confirmPassword')?.touched && (registerForm.get('confirmPassword')?.invalid || registerForm.hasError('mismatch'))}">
+        <div class="invalid-feedback">Passwords do not match.</div>
+      </div>
+
+      <button type="submit" class="btn w-100 mb-3" style="background-color: #5d4037; color: white;">
+        Create Account
+      </button>
+
+      <p class="text-center small">
+        Already have an account? <a routerLink="/login" style="color: #8d6e63;">Login here</a>
+      </p>
+    </form>
+  </div>
+</div>

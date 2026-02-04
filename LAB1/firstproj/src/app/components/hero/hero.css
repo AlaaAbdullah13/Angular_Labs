@@ -1,0 +1,19 @@
+.profile-img-container img {
+  width: 300px;  /* Changed from 300px to make it smaller */
+  height: 300px; /* Keep width and height equal for a perfect circle */
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out; /* Smooth animation */
+}
+
+.profile-img-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Adjust the white circle around the photo */
+.profile-img-container {
+  margin-top: 10px;
+  padding:10px;
+  background: white;
+  border-radius: 50%;
+  display: inline-block;
+}

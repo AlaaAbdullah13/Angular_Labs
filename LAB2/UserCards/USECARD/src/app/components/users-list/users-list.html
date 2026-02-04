@@ -1,0 +1,42 @@
+<div class="users-container">
+  <h1 class="main-title">Team Directory</h1>
+
+  <div class="search-box">
+    <div class="input-wrapper">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search by email...">
+      <span class="search-icon">🔍</span>
+    </div>
+    
+    @if (searchText) {
+      <button (click)="resetSearch()" class="reset-btn">Reset</button>
+    }
+  </div>
+
+  <div class="users-grid">
+    @for (user of users; track user.email) {
+      @if (user.email.toLowerCase().includes(searchText.toLowerCase())) {
+        <div class="user-card" [style.animation-delay]="$index * 0.1 + 's'">
+          <div class="user-avatar">
+            {{ user.name[0] }}
+          </div>
+          <h3>{{ user.name }}</h3>
+          <div class="info-group">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+          </div>
+          
+          <span class="role-chip" [ngStyle]="{
+            'background-color': user.role === 'admin' ? '#ff4757' : 
+                               (user.role === 'user' ? '#2ed573' : '#ffa502')
+          }">
+            {{ user.role }}
+          </span>
+        </div>
+      }
+    } @empty {
+      <div class="no-data">
+        <p>No users found matching "{{searchText}}"</p>
+      </div>
+    }
+  </div>
+</div>

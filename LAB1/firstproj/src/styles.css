@@ -1,0 +1,12 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+:root {
+  --primary-color: #4a6cf7;    
+  --secondary-color: #6c757d;  
+  --bg-light: #f8f9fa;       
+  --text-dark: #212529;       
+}
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}

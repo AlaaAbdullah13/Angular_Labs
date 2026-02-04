@@ -1,0 +1,35 @@
+<div class="book-card-dark" [class.is-out-of-stock]="book.stock === 0">
+  <div class="card-image-wrapper">
+    <img [src]="book.thumbnail" class="card-img" [alt]="book.title">
+    
+    @if (book.stock === 0) {
+      <div class="out-of-stock-badge">OUT OF STOCK</div>
+    }
+
+    <div class="image-hover-overlay" *ngIf="book.stock > 0">
+      <a [routerLink]="['/product', book.id]" class="btn-quick-view">
+        <i class="bi bi-eye"></i> View Details
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-content">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-author">By {{book.author}}</p>
+    
+    <div class="price-section">
+      <span class="current-price">{{ book.price | discount: book.discountPercentage }} EGP</span>
+    </div>
+    
+    <div class="button-group">
+      <button class="btn-action main-btn" [disabled]="book.stock === 0" (click)="onAddToCart()">
+        <i class="bi" [ngClass]="book.stock === 0 ? 'bi-dash-circle' : 'bi-cart-plus'"></i> 
+        {{ book.stock === 0 ? 'Unavailable' : 'Add' }}
+      </button>
+
+      <a [routerLink]="['/product', book.id]" class="btn-action outline-btn">
+        Details
+      </a>
+    </div>
+  </div>
+</div>

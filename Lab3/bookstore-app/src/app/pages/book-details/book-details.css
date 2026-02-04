@@ -1,0 +1,58 @@
+.vintage-detail-card {
+  background-color: #2b1b17; 
+  border: 1px solid #3e2723 !important;
+}
+
+.title-gold { color: #d4af37; }
+.author-name { color: #a0a0a0; font-style: italic; }
+
+.category-badge {
+  background-color: #5d4037;
+  color: #e0d5c1;
+  border: 1px solid #d4af37;
+}
+
+.description-text {
+  color: #bdbdbd;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.price-big {
+  color: whitesmoke;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.old-price-text { color: #757575; font-size: 1.2rem; }
+
+.badge-discount-red {
+  background-color: #d32f2f;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+.btn-add-vintage {
+  background-color: #d4af37;
+  color: #1a0f0d;
+  font-weight: bold;
+  padding: 15px 40px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-add-vintage:hover {
+  background-color: #ffc107;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.detail-page-animation {
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}

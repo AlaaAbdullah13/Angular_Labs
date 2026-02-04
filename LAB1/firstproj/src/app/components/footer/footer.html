@@ -1,0 +1,23 @@
+<footer class="py-5 bg-dark text-white mt-5">
+  <div class="container text-center">
+    <h3 class="fw-bold mb-4">Contact Information</h3>
+    <div class="row g-3 justify-content-center mb-4">
+      <div class="col-auto">
+        <i class="bi bi-envelope me-2"></i> {{ email() }}
+      </div>
+      <div class="col-auto">
+        <i class="bi bi-telephone me-2"></i> {{ phone() }}
+      </div>
+      <div class="col-auto">
+        <i class="bi bi-geo-alt me-2"></i> {{ location() }}
+      </div>
+    </div>
+    
+    <a [href]="linkedinUrl()" target="_blank" class="btn btn-outline-light rounded-pill px-4 mb-4">
+      Connect on LinkedIn
+    </a>
+    
+    <hr class="opacity-25">
+    <p class="text-muted mb-0">&copy; {{ currentYear() }} Alaa Abdallah. All rights reserved.</p>
+  </div>
+</footer>

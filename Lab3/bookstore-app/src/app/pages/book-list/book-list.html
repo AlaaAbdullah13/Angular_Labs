@@ -1,0 +1,23 @@
+
+<div class="container mt-5 py-3">
+  
+  <div class="welcome-banner-vintage text-center mb-5 p-5 rounded-4 shadow-lg">
+    <h1 class="display-3 fw-bold welcome-title-vintage">
+      Welcome to Bookly's Vintage Library
+    </h1>
+    <p class="lead welcome-slogan-vintage mt-3 mb-4">
+      Discover timeless tales and forgotten wisdom within our curated collection.
+    </p>
+    <a href="#" class="btn btn-explore-vintage mt-3">
+      Explore Our Collection <i class="bi bi-arrow-right-short ms-2"></i>
+    </a>
+  </div>
+  <h2 class="text-center mb-5" style="color: #d4af37; font-family: 'Playfair Display', serif;">Explore Our Collection</h2>
+  <div class="row g-4">
+    @for (item of books; track item.id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <app-book-card [book]="item"></app-book-card>
+      </div>
+    }
+  </div>
+</div>

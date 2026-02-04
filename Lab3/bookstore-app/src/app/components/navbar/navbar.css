@@ -1,0 +1,33 @@
+.custom-navbar {
+  background-color: #2b1b17; 
+  border-bottom: 3px solid #5d4037;
+  padding: 1rem 0;
+
+  .brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #d4af37; 
+  }
+
+  .nav-link {
+    color: #fcd9cc !important;
+    font-weight: 500;
+    &:hover {
+      color: #d4af37 !important;
+    }
+  }
+
+  .btn-outline-gold {
+    color: #d4af37;
+    border-color: #d4af37;
+    &:hover {
+      background-color: #d4af37;
+      color: #2b1b17;
+    }
+  }
+}
+
+.bi-book-half, .bi-cart3 {
+  color: #d4af37;
+}

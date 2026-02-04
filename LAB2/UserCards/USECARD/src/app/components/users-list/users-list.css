@@ -1,0 +1,75 @@
+.users-container {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search-box {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.8s ease-out; /* أنيميشن عند الفتح */
+}
+
+input {
+  flex: 1;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 4px 20px rgba(108, 92, 231, 0.2);
+  transform: translateY(-2px);
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.user-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.user-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.role-chip {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

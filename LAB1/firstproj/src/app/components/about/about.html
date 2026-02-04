@@ -1,0 +1,20 @@
+<section class="py-5 bg-white" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-4">About Me</h2>
+        <p class="lead text-muted">{{ summary() }}</p>
+      </div>
+      <div class="col-lg-6">
+        <h4 class="fw-bold mb-4 text-primary">Education</h4>
+        @for (edu of education(); track edu.degree) {
+          <div class="mb-4 border-start border-4 border-primary ps-3">
+            <h5 class="mb-0 fw-bold">{{ edu.degree }}</h5>
+            <div class="text-muted small">{{ edu.institution }} | {{ edu.date }}</div>
+            <span class="badge bg-light text-primary border border-primary mt-1">{{ edu.grade }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

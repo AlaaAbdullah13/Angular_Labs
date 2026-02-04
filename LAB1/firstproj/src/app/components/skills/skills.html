@@ -1,0 +1,21 @@
+<section class="py-5" id="skills">
+  <div class="container">
+    <h2 class="text-center mb-5">Technical Skills</h2>
+    <div class="row">
+      @for (item of skillsList(); track item.name) {
+        <div class="col-md-6 mb-4">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="fw-bold">{{ item.name }}</span>
+            <span>{{ item.level }}</span>
+          </div>
+          <div class="progress" style="height: 12px;">
+            <div class="progress-bar {{ item.color }} progress-bar-striped progress-bar-animated" 
+                 role="progressbar" 
+                 [style.width]="item.level">
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
