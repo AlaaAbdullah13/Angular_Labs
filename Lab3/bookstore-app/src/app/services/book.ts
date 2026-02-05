@@ -1,66 +1,102 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs'; 
-import { Book } from '../models/book';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+export interface Book {
+  id: string;
+  title: string;
+  author: string;
+  price: number;
+  stock: number;
+  discountPercentage: number;
+  description: string;
+  thumbnail: string;
+  category: string;
+  rating: number;
+}
+
+interface GoogleBook {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors?: string[];
+    description?: string;
+    categories?: string[];
+    averageRating?: number;
+    imageLinks?: {
+      thumbnail: string;
+    };
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookService {
+export class GoogleBooksService {
+  private apiUrl = 'https://www.googleapis.com/books/v1/volumes';
+  private apiKey = 'AIzaSyBGb9Vji4yWed0auzbaVMw_TwpN0xEx1Z4'; 
+
   constructor(private http: HttpClient) {}
 
-  getBooks(): Observable<Book[]> {
-    const localBooks: Book[] = [
-      {
-        id: 1,
-        title: "The Sealed Nectar",
-        author: "S. Mubarakpuri",
-        price: 15.99,
-        thumbnail: "https://m.media-amazon.com/images/I/61XpS6f5TfL.jpg",
-        stock: 20,
-        category: "Islamic",
-        discountPercentage: 5,
-        rating: 4.9,
-        description: "Biography of the Prophet (PBUH)."
-      },
-      {
-        id: 2,
-        title: "Atomic Habits",
-        author: "James Clear",
-        price: 18.00,
-        thumbnail: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg",
-        stock: 15,
-        category: "Self-Help",
-        discountPercentage: 10,
-        rating: 4.8,
-        description: "Building good habits."
-      },
-      {
-        id: 3,
-        title: "Reclaim Your Heart",
-        author: "Yasmin Mogahed",
-        price: 14.00,
-        thumbnail: "https://m.media-amazon.com/images/I/71+vS-9ofxL.jpg",
-        stock: 25,
-        category: "Islamic",
-        discountPercentage: 0,
-        rating: 4.9,
-        description: "Spiritual awakening."
-      },
-      {
-        id: 4,
-        title: "Don't Be Sad (La Tahzan)",
-        author: "Aaidh Al-Qarni",
-        price: 19.99,
-        thumbnail: "https://m.media-amazon.com/images/I/51hXlA8A-HL.jpg",
-        stock: 30,
-        category: "Islamic / Spiritual",
-        discountPercentage: 5,
-        rating: 4.8,
-        description: "A roadmap for anyone seeking to live a peaceful life."
-      }
-    ];
 
-    return of(localBooks);
+  searchBooks(query: string = 'self-development'): Observable<Book[]> {
+    const url = `${this.apiUrl}?q=${query}&maxResults=25&key=${this.apiKey}`;
+    
+    return this.http.get<any>(url).pipe(
+      map(response => {
+        if (!response.items) return [];
+        
+        return response.items.map((item: GoogleBook) => this.convertToBook(item));
+      })
+    );
+  }
+
+
+  private convertToBook(googleBook: GoogleBook): Book {
+  const volumeInfo = googleBook.volumeInfo;
+  
+  let thumb = volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/300x450?text=No+Cover';
+  if (thumb.startsWith('http:')) {
+    thumb = thumb.replace('http:', 'https:');
+  }
+
+  return {
+    id: googleBook.id,
+    title: volumeInfo.title || 'Unknown Title',
+    author: volumeInfo.authors?.[0] || 'Unknown Author',
+    description: volumeInfo.description || 'No description available',
+    thumbnail: thumb,
+    category: volumeInfo.categories?.[0] || 'General',
+    rating: volumeInfo.averageRating || 4.0,
+    price: this.generateRandomPrice(),
+    stock: this.generateRandomStock(),
+    discountPercentage: this.generateRandomDiscount()
+  };
+}
+
+ 
+  private generateRandomPrice(): number {
+    return Math.floor(Math.random() * (500 - 300) + 300); 
+  }
+
+  
+  private generateRandomStock(): number {
+    return Math.floor(Math.random() * (50 - 10) + 10); 
+  }
+
+
+  private generateRandomDiscount(): number {
+    const discounts = [0, 5, 10, 15, 20];
+    return discounts[Math.floor(Math.random() * discounts.length)];
+  }
+
+  
+  getBookById(id: string): Observable<Book> {
+    const url = `${this.apiUrl}/${id}?key=${this.apiKey}`;
+    
+    return this.http.get<GoogleBook>(url).pipe(
+      map(item => this.convertToBook(item))
+    );
   }
 }

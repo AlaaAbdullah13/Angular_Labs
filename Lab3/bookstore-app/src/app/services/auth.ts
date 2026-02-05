@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private router: Router) {}
 
-  // Check if user is logged in
   isLoggedIn(): boolean {
     return !!localStorage.getItem('loggedUser');
   }

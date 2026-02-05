@@ -1,49 +1,51 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-5 col-lg-4">
-      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-        
-        <div class="p-4 text-center text-white" style="background-color: #5D4037;">
-          <h2 class="fw-bold mb-0">Welcome Back</h2>
-          <p class="small opacity-75 mb-0">Sign in to continue to Bookly</p>
-        </div>
+<div class="login-page-wrapper">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-5 col-lg-4">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden mt-nav">
+          
+          <div class="p-4 text-center text-white" style="background-color: #5D4037;">
+            <h2 class="fw-bold mb-0">Welcome Back</h2>
+            <p class="small opacity-75 mb-0">Sign in to continue to Bookly</p>
+          </div>
 
-        <div class="card-body p-4 bg-white">
-          <form (ngSubmit)="onLogin()">
-            <div class="mb-3">
-              <label class="form-label fw-bold small text-secondary">Email Address</label>
-              <input type="email" 
-                     name="email" 
-                     [(ngModel)]="loginData.email" 
-                     class="form-control bg-light" 
-                     placeholder="email@example.com"
-                     required>
+          <div class="card-body p-4 bg-white">
+            <form (ngSubmit)="onLogin()">
+              <div class="mb-3">
+                <label class="form-label fw-bold small text-secondary">Email Address</label>
+                <input type="email" 
+                       name="email" 
+                       [(ngModel)]="loginData.email" 
+                       class="form-control bg-light" 
+                       placeholder="email@example.com"
+                       required>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold small text-secondary">Password</label>
+                <input type="password" 
+                       name="password" 
+                       [(ngModel)]="loginData.password" 
+                       class="form-control bg-light" 
+                       placeholder="••••••••"
+                       required>
+              </div>
+
+              <button type="submit" 
+                      class="btn btn-lg w-100 text-white fw-bold" 
+                      style="background-color: #5D4037;">
+                Sign In
+              </button>
+            </form>
+
+            <div class="text-center mt-4">
+              <p class="mb-0 small text-muted">
+                New to Bookly? 
+                <a routerLink="/register" class="fw-bold text-decoration-none" style="color: #E67E22;">
+                  Create an Account
+                </a>
+              </p>
             </div>
-
-            <div class="mb-4">
-              <label class="form-label fw-bold small text-secondary">Password</label>
-              <input type="password" 
-                     name="password" 
-                     [(ngModel)]="loginData.password" 
-                     class="form-control bg-light" 
-                     placeholder="••••••••"
-                     required>
-            </div>
-
-            <button type="submit" 
-                    class="btn btn-lg w-100 text-white fw-bold" 
-                    style="background-color: #5D4037;">
-              Sign In
-            </button>
-          </form>
-
-          <div class="text-center mt-4">
-            <p class="mb-0 small text-muted">
-              New to Bookly? 
-              <a routerLink="/register" class="fw-bold text-decoration-none" style="color: #E67E22;">
-                Create an Account
-              </a>
-            </p>
           </div>
         </div>
       </div>

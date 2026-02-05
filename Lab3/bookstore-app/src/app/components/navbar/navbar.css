@@ -1,33 +1,65 @@
-.custom-navbar {
-  background-color: #2b1b17; 
-  border-bottom: 3px solid #5d4037;
-  padding: 1rem 0;
 
-  .brand-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #d4af37; 
-  }
-
-  .nav-link {
-    color: #fcd9cc !important;
-    font-weight: 500;
-    &:hover {
-      color: #d4af37 !important;
-    }
-  }
-
-  .btn-outline-gold {
-    color: #d4af37;
-    border-color: #d4af37;
-    &:hover {
-      background-color: #d4af37;
-      color: #2b1b17;
-    }
-  }
+.vintage-navbar {
+  background-color: #ffffff !important;
+  border-bottom: 2px solid #d4af37;
+  padding: 10px 0;
+  z-index: 9999 !important; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.bi-book-half, .bi-cart3 {
-  color: #d4af37;
+.brand-text {
+  color: #3d2b1f;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.gold-icon {
+  color: #d4af37 !important;
+}
+
+.nav-link {
+  color: #3d2b1f !important; 
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.nav-link:hover, .active-link {
+  color: #d4af37 !important;
+}
+
+.cart-badge {
+  background-color: #d4af37 !important;
+  color: #ffffff !important;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 7px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-logout-vintage {
+  background: transparent;
+  color: #3d2b1f;
+  border: 1px solid #3d2b1f;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-logout-vintage:hover {
+  background: #d4af37;
+  color: #fff;
+  border-color: #d4af37;
+}
+
+.navbar-collapse {
+  transition: all 0.4s ease-in-out;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse.show {
+    background-color: #ffffff;
+    padding: 20px;
+    border-top: 1px solid #eee;
+  }
 }

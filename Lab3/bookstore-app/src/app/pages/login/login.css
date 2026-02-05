@@ -1,0 +1,24 @@
+.login-page-wrapper {
+  background-color:#2b1b17; 
+  min-height: 100vh;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+
+.mt-nav {
+  margin-top: 80px; 
+  margin-bottom: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .mt-nav {
+    margin-top: 100px; 
+  }
+}
+
+.form-control:focus {
+  border-color: #5D4037;
+  box-shadow: 0 0 0 0.25rem rgba(93, 64, 55, 0.25);
+}

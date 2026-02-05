@@ -1,10 +1,9 @@
 
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router'; // Import ActivatedRoute
+import { ActivatedRoute, RouterLink } from '@angular/router'; 
 import { Book } from '../../models/book';
-import { BOOKS } from '../../constants/books-data';
+import { GoogleBooksService } from '../../services/book';
 import { DiscountPipe } from '../../pipes/discount.pipe'; 
 import { CartService } from '../../services/cart';
 
@@ -17,25 +16,44 @@ import { CartService } from '../../services/cart';
 })
 export class BookDetailsComponent implements OnInit {
   selectedBook: Book | undefined;
+  isLoading: boolean = true; 
 
   constructor(
     private route: ActivatedRoute, 
-    private cartService: CartService
+    private bookService: GoogleBooksService, 
+    private cartService: CartService,
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit() {
     const idFromUrl = this.route.snapshot.paramMap.get('id');
-    console.log('ID from URL:', idFromUrl); 
-
+    
     if (idFromUrl) {
-      this.selectedBook = BOOKS.find(b => b.id === Number(idFromUrl));
-      console.log('Book Found:', this.selectedBook);
+      this.bookService.getBookById(idFromUrl).subscribe({
+        next: (book) => {
+          this.selectedBook = book;
+          this.isLoading = false;
+          console.log('Book Details Loaded:', this.selectedBook);
+          
+          this.cdr.detectChanges(); 
+        },
+        error: (err) => {
+          console.error('Error fetching book details:', err);
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        }
+      });
     }
   }
 
-addToCart() {
-  if (this.selectedBook) {
-    this.cartService.addToCart(this.selectedBook);
+  formatImg(url: string | undefined): string {
+    if (!url) return 'assets/images/placeholder.jpg';
+    return url.replace('http:', 'https:');
   }
-}
+
+  addToCart() {
+    if (this.selectedBook) {
+      this.cartService.addToCart(this.selectedBook);
+    }
+  }
 }

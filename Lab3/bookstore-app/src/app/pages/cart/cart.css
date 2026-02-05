@@ -1,0 +1,82 @@
+
+
+.cart-page-wrapper {
+  background-color: #3d2b1f;
+  min-height: 90vh;
+}
+
+.title-brown {
+  color: #3d2b1f;
+  font-family: 'Playfair Display', serif;
+}
+
+.text-brown { color: #3d2b1f; }
+.text-gold { color: #d4af37; }
+.border-gold { border-color: #d4af37 !important; }
+
+/* Cart Card Styling */
+.cart-item-card {
+  transition: transform 0.2s ease;
+}
+
+.cart-item-card:hover {
+  transform: translateX(5px);
+}
+
+.img-cart {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* Quantity Control */
+.quantity-control {
+  background: #f8f9fa;
+}
+
+.btn-qty {
+  color: #3d2b1f;
+  border: none;
+  padding: 5px 12px;
+  transition: 0.2s;
+}
+
+.btn-qty:hover:not(:disabled) {
+  background-color: #d4af37;
+  color: white;
+}
+
+.btn-qty:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Gold Buttons */
+.btn-gold-action {
+  background-color: #d4af37 !important;
+  color: white !important;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-action:hover {
+  background-color: #3d2b1f !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Empty State */
+.empty-cart-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bi-cart-x {
+  color: #d4af37;
+}
+
+.summary-box {
+  position: sticky;
+  top: 100px;
+}

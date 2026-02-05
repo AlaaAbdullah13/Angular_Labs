@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { CartService } from '../../services/cart';
-import { Book } from '../../models/book';
+import { CartService } from '../../services/cart'; 
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './cart.html'
+  templateUrl: './cart.html',
+  styleUrl: './cart.css'
 })
 export class CartComponent implements OnInit {
-  items: Book[] = [];
-  total: number = 0;
+  cartItems: any[] = [];
+  totalPrice: number = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) {} 
 
   ngOnInit(): void {
-    this.refreshCart();
+    this.cartService.cart$.subscribe((items: any[]) => {
+      this.cartItems = items;
+      this.totalPrice = this.cartService.getTotalPrice();
+    });
   }
 
-  removeItem(index: number): void {
-    this.cartService.removeFromCart(index);
-    this.refreshCart();
+  increase(id: string) {
+    this.cartService.updateQuantity(id, 1);
   }
 
-  refreshCart(): void {
-    this.items = this.cartService.getCartItems();
-    this.total = this.cartService.getTotalPrice();
+  decrease(id: string) {
+    this.cartService.updateQuantity(id, -1);
+  }
+
+  remove(id: string) {
+    this.cartService.removeFromCart(id);
   }
 }
